@@ -2,11 +2,11 @@ const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matc
 const header = document.querySelector("[data-header]");
 const year = document.querySelector("[data-year]");
 
-year.textContent = new Date().getFullYear();
+if (year) year.textContent = new Date().getFullYear();
 
 window.addEventListener(
   "scroll",
-  () => header.classList.toggle("scrolled", window.scrollY > 40),
+  () => header?.classList.toggle("scrolled", window.scrollY > 40),
   { passive: true },
 );
 
@@ -19,96 +19,197 @@ const revealObserver = new IntersectionObserver(
       }
     });
   },
-  { threshold: 0.08, rootMargin: "0px 0px -40px" },
+  { threshold: 0.08, rootMargin: "0px 0px -36px" },
 );
 
 document.querySelectorAll(".reveal").forEach((element, index) => {
-  element.style.transitionDelay = `${Math.min(index % 4, 3) * 70}ms`;
+  element.style.transitionDelay = `${Math.min(index % 4, 3) * 65}ms`;
   revealObserver.observe(element);
 });
 
-const tilt = document.querySelector("[data-tilt]");
-if (tilt && !reducedMotion && window.matchMedia("(pointer: fine)").matches) {
-  window.addEventListener("pointermove", (event) => {
-    const x = (event.clientX / window.innerWidth - 0.5) * 9;
-    const y = (event.clientY / window.innerHeight - 0.5) * -9;
-    tilt.style.transform = `rotateX(${y}deg) rotateY(${x}deg)`;
-  });
-}
-
+const field = document.querySelector("[data-field]");
 const canvas = document.getElementById("spin-canvas");
-const context = canvas.getContext("2d", { alpha: true });
+const fieldTime = document.querySelector("[data-field-time]");
+const context = canvas?.getContext("2d", { alpha: true });
+
 let frame = 0;
-let canvasSize = 0;
+let width = 0;
+let height = 0;
 let deviceScale = 1;
+let isRunning = false;
+let lastLabelFrame = 0;
+
+const pointer = {
+  active: false,
+  x: 0.56,
+  y: 0.48,
+  smoothX: 0.56,
+  smoothY: 0.48,
+};
 
 function resizeCanvas() {
+  if (!canvas || !context) return;
   const rect = canvas.getBoundingClientRect();
   deviceScale = Math.min(window.devicePixelRatio || 1, 2);
-  canvasSize = Math.max(rect.width, 1);
-  canvas.width = Math.round(rect.width * deviceScale);
-  canvas.height = Math.round(rect.height * deviceScale);
+  width = Math.max(rect.width, 1);
+  height = Math.max(rect.height, 1);
+  canvas.width = Math.round(width * deviceScale);
+  canvas.height = Math.round(height * deviceScale);
   context.setTransform(deviceScale, 0, 0, deviceScale, 0, 0);
 }
 
-function drawSpinTexture(time = 0) {
-  const size = canvasSize;
-  if (!size) return;
-  const cells = size < 400 ? 20 : 27;
-  const gap = size / cells;
-  const centerX = size * (0.5 + Math.sin(time * 0.00032) * 0.025);
-  const centerY = size * (0.5 + Math.cos(time * 0.00027) * 0.025);
+function smoothStep(edge0, edge1, value) {
+  const amount = Math.max(0, Math.min(1, (value - edge0) / (edge1 - edge0)));
+  return amount * amount * (3 - 2 * amount);
+}
 
-  context.clearRect(0, 0, size, size);
+function drawContour(centerX, centerY, radius, phase, opacity) {
+  context.beginPath();
+  for (let step = 0; step <= 160; step += 1) {
+    const angle = (step / 160) * Math.PI * 2;
+    const anisotropy = 1 + 0.105 * Math.cos(4 * angle + phase);
+    const localRadius = radius * anisotropy;
+    const x = centerX + Math.cos(angle) * localRadius;
+    const y = centerY + Math.sin(angle) * localRadius;
+    if (step === 0) context.moveTo(x, y);
+    else context.lineTo(x, y);
+  }
+  context.closePath();
+  context.strokeStyle = `rgba(155, 140, 255, ${opacity})`;
+  context.lineWidth = 0.8;
+  context.setLineDash([3, 8]);
+  context.stroke();
+  context.setLineDash([]);
+}
+
+function drawVector(x, y, angle, length, hue, opacity, lineWidth) {
+  const cos = Math.cos(angle);
+  const sin = Math.sin(angle);
+  const half = length * 0.5;
+  const startX = x - cos * half;
+  const startY = y - sin * half;
+  const endX = x + cos * half;
+  const endY = y + sin * half;
+
+  context.strokeStyle = `hsla(${hue}, 72%, 70%, ${opacity})`;
+  context.lineWidth = lineWidth;
+  context.beginPath();
+  context.moveTo(startX, startY);
+  context.lineTo(endX, endY);
+  context.stroke();
+
+  context.fillStyle = `hsla(${hue}, 86%, 76%, ${opacity})`;
+  context.beginPath();
+  context.arc(endX, endY, lineWidth > 1.2 ? 1.45 : 0.9, 0, Math.PI * 2);
+  context.fill();
+}
+
+function drawSpinField(time = 0) {
+  if (!context || !width || !height) return;
+
+  const scale = Math.min(width, height);
+  const gap = Math.max(20, Math.min(28, scale / 23));
+  const phase = time * 0.00015;
+  const driftX = Math.sin(time * 0.00023) * 0.018;
+  const driftY = Math.cos(time * 0.00019) * 0.018;
+
+  pointer.smoothX += ((pointer.active ? pointer.x : 0.56) - pointer.smoothX) * 0.035;
+  pointer.smoothY += ((pointer.active ? pointer.y : 0.48) - pointer.smoothY) * 0.035;
+
+  const centerX = width * (0.56 + driftX + (pointer.smoothX - 0.56) * 0.16);
+  const centerY = height * (0.48 + driftY + (pointer.smoothY - 0.48) * 0.16);
+  const textureRadius = scale * 0.51;
+
+  context.clearRect(0, 0, width, height);
   context.lineCap = "round";
 
-  for (let row = 1; row < cells; row += 1) {
-    for (let column = 1; column < cells; column += 1) {
-      const x = column * gap;
-      const y = row * gap;
+  const halo = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, textureRadius * 1.12);
+  halo.addColorStop(0, "rgba(155, 140, 255, 0.105)");
+  halo.addColorStop(0.38, "rgba(119, 228, 237, 0.055)");
+  halo.addColorStop(1, "rgba(7, 9, 13, 0)");
+  context.fillStyle = halo;
+  context.fillRect(0, 0, width, height);
+
+  for (let y = gap * 1.4; y < height - gap; y += gap) {
+    for (let x = gap * 1.4; x < width - gap; x += gap) {
       const dx = x - centerX;
       const dy = y - centerY;
       const radius = Math.hypot(dx, dy);
-      const normalized = Math.min(radius / (size * 0.43), 1);
+      const normalized = Math.min(radius / textureRadius, 1.28);
       const azimuth = Math.atan2(dy, dx);
-      const twist = Math.PI * (1 - normalized) + time * 0.00018;
-      const angle = azimuth + Math.PI / 2 + Math.sin(twist) * 0.62;
-      const length = gap * (0.22 + 0.32 * Math.sin(normalized * Math.PI));
-      const opacity = 0.22 + (1 - normalized) * 0.68;
-      const hue = 175 + 100 * (1 - normalized);
+      const polar = Math.PI * smoothStep(0.04, 1, Math.min(normalized, 1));
+      const inPlane = Math.sin(polar);
+      const magnetizationZ = Math.cos(polar);
+      const fourFold = Math.sin(4 * azimuth - phase) * 0.13 * (1 - Math.min(normalized, 1));
+      const angle = azimuth + Math.PI / 2 + phase * 0.65 + fourFold;
+      const edgeFade = 1 - smoothStep(0.78, 1.2, normalized);
+      const panelFade = Math.min(1, Math.min(x, width - x, y, height - y) / (gap * 2.2));
+      const opacity = (0.12 + 0.64 * Math.abs(inPlane)) * edgeFade * panelFade;
 
-      context.strokeStyle = `hsla(${hue}, 75%, 68%, ${opacity})`;
-      context.lineWidth = normalized < 0.2 ? 1.8 : 1.15;
-      context.beginPath();
-      context.moveTo(x - Math.cos(angle) * length, y - Math.sin(angle) * length);
-      context.lineTo(x + Math.cos(angle) * length, y + Math.sin(angle) * length);
-      context.stroke();
+      if (opacity < 0.025) continue;
 
-      const tipX = x + Math.cos(angle) * length;
-      const tipY = y + Math.sin(angle) * length;
-      context.fillStyle = `hsla(${hue}, 82%, 72%, ${opacity})`;
-      context.beginPath();
-      context.arc(tipX, tipY, normalized < 0.3 ? 1.6 : 1, 0, Math.PI * 2);
-      context.fill();
+      const length = gap * (0.17 + 0.48 * Math.abs(inPlane));
+      const hue = 184 + (magnetizationZ + 1) * 34 + 8 * Math.sin(azimuth * 2);
+      drawVector(x, y, angle, length, hue, opacity, normalized < 0.24 ? 1.45 : 1.05);
     }
   }
 
-  const glow = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, size * 0.14);
-  glow.addColorStop(0, "rgba(183, 255, 101, 0.28)");
-  glow.addColorStop(1, "rgba(108, 229, 232, 0)");
-  context.fillStyle = glow;
+  drawContour(centerX, centerY, scale * 0.17, phase, 0.28);
+  drawContour(centerX, centerY, scale * 0.29, -phase * 0.7, 0.2);
+  drawContour(centerX, centerY, scale * 0.41, phase * 0.45, 0.13);
+
+  const core = context.createRadialGradient(centerX, centerY, 0, centerX, centerY, scale * 0.09);
+  core.addColorStop(0, "rgba(197, 245, 106, 0.34)");
+  core.addColorStop(0.28, "rgba(119, 228, 237, 0.12)");
+  core.addColorStop(1, "rgba(119, 228, 237, 0)");
+  context.fillStyle = core;
   context.beginPath();
-  context.arc(centerX, centerY, size * 0.14, 0, Math.PI * 2);
+  context.arc(centerX, centerY, scale * 0.09, 0, Math.PI * 2);
   context.fill();
 
-  if (!reducedMotion) frame = requestAnimationFrame(drawSpinTexture);
+  if (fieldTime && time - lastLabelFrame > 80) {
+    fieldTime.textContent = `t = ${(time * 0.00042).toFixed(2)} ps`;
+    lastLabelFrame = time;
+  }
+
+  if (!reducedMotion && isRunning) frame = requestAnimationFrame(drawSpinField);
 }
 
-resizeCanvas();
-drawSpinTexture();
-window.addEventListener("resize", resizeCanvas);
+function startField() {
+  if (reducedMotion || isRunning) return;
+  isRunning = true;
+  frame = requestAnimationFrame(drawSpinField);
+}
+
+function stopField() {
+  isRunning = false;
+  cancelAnimationFrame(frame);
+}
+
+if (field && canvas && context) {
+  field.addEventListener("pointermove", (event) => {
+    const rect = field.getBoundingClientRect();
+    pointer.active = true;
+    pointer.x = (event.clientX - rect.left) / rect.width;
+    pointer.y = (event.clientY - rect.top) / rect.height;
+  });
+
+  field.addEventListener("pointerleave", () => {
+    pointer.active = false;
+  });
+
+  const resizeObserver = new ResizeObserver(() => {
+    resizeCanvas();
+    if (reducedMotion) drawSpinField(0);
+  });
+
+  resizeObserver.observe(field);
+  resizeCanvas();
+  drawSpinField(0);
+  startField();
+}
 
 document.addEventListener("visibilitychange", () => {
-  if (document.hidden) cancelAnimationFrame(frame);
-  else if (!reducedMotion) frame = requestAnimationFrame(drawSpinTexture);
+  if (document.hidden) stopField();
+  else startField();
 });
