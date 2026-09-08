@@ -3,7 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#080b0f" />
+    <meta name="theme-color" content="#0b1018" />
+    <link rel="canonical" href="https://yunxi-jiang.github.io/" />
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <meta property="og:url" content="https://yunxi-jiang.github.io/" />
     <meta
       name="description"
       content="Yunxi Jiang — Postdoctoral researcher in condensed matter physics at CNRS/IPCMS, working on magnetic skyrmions, spin dynamics, altermagnetism, and AI for physics."
@@ -18,10 +21,10 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Manrope:wght@300;400;500;600;700&family=Syne:wght@500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=5" />
+    <link rel="stylesheet" href="styles.css?v=20260908.4" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -41,72 +44,49 @@
     <main id="main">
       <section class="hero" id="top" aria-labelledby="hero-title">
         <div class="hero-grid" aria-hidden="true"></div>
-        <div class="hero-spectrum" aria-hidden="true"></div>
-
-        <div class="hero-kicker reveal">
-          <span class="status-dot"></span>
-          <span>Postdoctoral Researcher</span>
-          <span class="kicker-place">CNRS / IPCMS · France</span>
-        </div>
-
-        <div class="spin-lab reveal" data-field>
-          <canvas id="spin-canvas" aria-label="Animated topological spin field"></canvas>
-          <div class="spin-label spin-label-top">
-            <span>LIVE SPIN FIELD</span>
-            <span data-field-time>t = 0.00 ps</span>
-          </div>
-          <div class="spin-label spin-label-bottom">
-            <span>Q = −1</span>
-            <span>m(x, y, t)</span>
-          </div>
-          <div class="field-axis field-axis-x" aria-hidden="true">x</div>
-          <div class="field-axis field-axis-y" aria-hidden="true">y</div>
-        </div>
-
         <div class="hero-identity">
+          <p class="hero-kicker"><span class="status-dot"></span> CNRS / IPCMS · France</p>
           <div class="hero-title-wrap">
-            <p class="hero-cn reveal">蒋韫希 · CONDENSED MATTER PHYSICIST</p>
-            <h1 id="hero-title" class="reveal"><span>Yunxi</span><span>Jiang</span></h1>
+            <h1 id="hero-title"><span>Yunxi</span> <span>Jiang<span class="name-period">.</span></span></h1>
+            <p class="hero-cn"><span lang="zh">蒋韫希</span><span class="identity-rule"></span>Condensed matter physicist</p>
           </div>
-
-          <div class="hero-copy reveal">
+          <div class="hero-copy">
+            <p class="hero-role">Postdoctoral Researcher</p>
             <p>
               I investigate <em>topological spin textures</em>—how they move,
               interact, and carry information.
             </p>
-            <a class="text-link" href="#research">Explore the research <span>↓</span></a>
           </div>
-
-          <div class="hero-actions reveal" aria-label="Profile links">
-            <a href="#publications">Publications</a>
+          <div class="hero-actions" aria-label="Profile links">
+            <a class="button button-primary" href="#publications">View publications <span>↗</span></a>
             <a
               href="https://scholar.google.com/citations?user=_2a9RTAAAAAJ&hl=en"
               target="_blank"
               rel="noreferrer"
-              >Scholar ↗</a
+              >Google Scholar ↗</a
             >
-            <a href="assets/Yunxi_Jiang_CV.pdf" download>CV ↓</a>
+            <a href="assets/Yunxi_Jiang_CV.pdf" download>Download CV ↓</a>
           </div>
         </div>
-
-        <div class="scroll-cue" aria-hidden="true">
-          <span>Scroll</span>
-          <i></i>
+        <figure class="spin-lab" data-field>
+          <canvas id="spin-canvas" data-physics="skyrmion" role="img" aria-label="Schematic three-dimensional view of a Néel skyrmion. Arrows represent local magnetization, with a reversed core.">Schematic of a Néel skyrmion spin texture.</canvas>
+          <figcaption class="field-caption">
+            <span><strong>Order in motion</strong><small>Néel skyrmion · schematic</small></span>
+            <span class="field-legend" aria-label="Color represents out-of-plane magnetization from minus one to plus one">−1 <i></i> +1 <em>m<sub>z</sub></em></span>
+          </figcaption>
+        </figure>
+        <div class="hero-bottom">
+          <a class="text-link" href="#research">Explore my research <span>↓</span></a>
+          <button class="motion-toggle" type="button" data-motion aria-pressed="false" hidden>Pause animation <span aria-hidden="true">Ⅱ</span></button>
         </div>
       </section>
 
       <div class="ticker" aria-label="Research topics">
         <div class="ticker-track">
-          <span>Magnetic Skyrmions</span><i>✦</i>
-          <span>Spin Dynamics</span><i>✦</i>
-          <span>Altermagnetism</span><i>✦</i>
-          <span>Quantum Computing × AI</span><i>✦</i>
-          <span>AI for Physical Science</span><i>✦</i>
-          <span aria-hidden="true">Magnetic Skyrmions</span><i aria-hidden="true">✦</i>
-          <span aria-hidden="true">Spin Dynamics</span><i aria-hidden="true">✦</i>
-          <span aria-hidden="true">Altermagnetism</span><i aria-hidden="true">✦</i>
-          <span aria-hidden="true">Quantum Computing × AI</span><i aria-hidden="true">✦</i>
-          <span aria-hidden="true">AI for Physical Science</span><i aria-hidden="true">✦</i>
+          <span>Magnetic skyrmions</span><i aria-hidden="true">/</i>
+          <span>Spin dynamics</span><i aria-hidden="true">/</i>
+          <span>Altermagnetism</span><i aria-hidden="true">/</i>
+          <span>Quantum computing & AI</span>
         </div>
       </div>
 
@@ -156,8 +136,7 @@
         <div class="research-grid">
           <article class="research-card card-skyrmion reveal">
             <div class="card-visual" aria-hidden="true">
-              <div class="skyrmion-disc"><i></i><i></i><i></i></div>
-              <span>Q = ±1</span>
+              <canvas data-physics="texture"></canvas><span>01 / TOPOLOGY</span>
             </div>
             <div class="card-number">01</div>
             <h3>Topological Spin Textures</h3>
@@ -174,8 +153,7 @@
 
           <article class="research-card card-wave reveal">
             <div class="card-visual wave-visual" aria-hidden="true">
-              <div class="wave-stack"><i></i><i></i><i></i><i></i><i></i></div>
-              <span>ω(k)</span>
+              <canvas data-physics="waves"></canvas><span>02 / DYNAMICS</span>
             </div>
             <div class="card-number">02</div>
             <h3>Spin Dynamics & Altermagnetism</h3>
@@ -192,11 +170,7 @@
 
           <article class="research-card card-ai reveal">
             <div class="card-visual ai-visual" aria-hidden="true">
-              <div class="quantum-register">
-                <i></i><i></i><i></i><i></i>
-                <b></b><b></b><b></b><b></b><b></b>
-              </div>
-              <span>|ψ⟩</span>
+              <canvas data-physics="quantum"></canvas><span>03 / QUANTUM + AI</span>
             </div>
             <div class="card-number">03</div>
             <h3>AI for Physical Science</h3>
@@ -233,7 +207,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <div class="pub-tags"><span>Physical Review B</span><span>Featured research</span></div>
-              <h3>Altermagnet skyrmions: Macroscopic realization of <em>d</em>-wave symmetry</h3>
+              <h3><a href="https://doi.org/10.1103/PhysRevB.112.014423" target="_blank" rel="noreferrer">Altermagnet skyrmions: Macroscopic realization of <em>d</em>-wave symmetry</a></h3>
               <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Zhikai Wang, and Hao Yu</p>
               <p class="pub-meta">Physical Review B <b>112</b>, 014423</p>
             </div>
@@ -251,7 +225,7 @@
             <div class="pub-year">2025</div>
             <div class="pub-main">
               <div class="pub-tags"><span>JMMM</span></div>
-              <h3>Dynamics of current-driven spin waves in a confined track</h3>
+              <h3><a href="https://doi.org/10.1016/j.jmmm.2025.172800" target="_blank" rel="noreferrer">Dynamics of current-driven spin waves in a confined track</a></h3>
               <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Hem Raj Sharma, and Hao Yu</p>
               <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>615</b>, 172800</p>
             </div>
@@ -262,7 +236,7 @@
             <div class="pub-year">2023</div>
             <div class="pub-main">
               <div class="pub-tags"><span>Journal of Applied Physics</span></div>
-              <h3>Skyrmion-based racetrack multilevel data storage device manipulated by pinning</h3>
+              <h3><a href="https://doi.org/10.1063/5.0151304" target="_blank" rel="noreferrer">Skyrmion-based racetrack multilevel data storage device manipulated by pinning</a></h3>
               <p><strong>Yunxi Jiang</strong>, Hao Yu, and Xi Chen</p>
               <p class="pub-meta">Journal of Applied Physics <b>134</b>, 053901</p>
             </div>
@@ -273,7 +247,7 @@
             <div class="pub-year">2022</div>
             <div class="pub-main">
               <div class="pub-tags"><span>JMMM</span></div>
-              <h3>Current-driven dynamics of skyrmions in the presence of pinning at finite temperatures</h3>
+              <h3><a href="https://doi.org/10.1016/j.jmmm.2022.169786" target="_blank" rel="noreferrer">Current-driven dynamics of skyrmions in the presence of pinning at finite temperatures</a></h3>
               <p><strong>Yunxi Jiang</strong>, Chen Xuan, and Hao Yu</p>
               <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>562</b>, 169786</p>
             </div>
@@ -284,7 +258,7 @@
             <div class="pub-year">2023</div>
             <div class="pub-main">
               <div class="pub-tags"><span>Science and Engineering</span><span>Review</span></div>
-              <h3>Research progress on dynamics of skyrmions under the effect of pinning</h3>
+              <h3><a href="https://scholar.google.com/scholar?q=%22Research+Progress+on+Dynamics+of+Skyrmions+Under+the+Effect+of+Pinning%22" target="_blank" rel="noreferrer">Research progress on dynamics of skyrmions under the effect of pinning</a></h3>
               <p><strong>Yunxi Jiang</strong> and Hao Yu</p>
               <p class="pub-meta">Science and Engineering <b>1</b>(1), 38–46</p>
             </div>
@@ -295,7 +269,7 @@
             <div class="pub-year">—</div>
             <div class="pub-main">
               <div class="pub-tags"><span>Under review</span></div>
-              <h3>Intrinsic double-well potential of altermagnetic skyrmions: Toward a qubit</h3>
+              <h3><a href="https://scholar.google.com/scholar?q=%22Intrinsic+Double-Well+Potential+of+Altermagnetic+Skyrmions%22" target="_blank" rel="noreferrer">Intrinsic double-well potential of altermagnetic skyrmions: Toward a qubit</a></h3>
               <p><strong>Yunxi Jiang</strong>, Chen Xuan, Xi Chen, Zhikai Wang, Qinfeng Zhu, and Hao Yu</p>
               <p class="pub-meta">Manuscript under review</p>
             </div>
@@ -306,7 +280,7 @@
             <div class="pub-year">PhD</div>
             <div class="pub-main">
               <div class="pub-tags"><span>University of Liverpool</span><span>Thesis</span></div>
-              <h3>Current-driven magnetic skyrmions for encoding/storing information: Manipulation and dynamics in nanoscale structures</h3>
+              <h3><a href="https://livrepository.liverpool.ac.uk/3194985/" target="_blank" rel="noreferrer">Current-driven magnetic skyrmions for encoding/storing information: Manipulation and dynamics in nanoscale structures</a></h3>
               <p><strong>Yunxi Jiang</strong></p>
               <p class="pub-meta">PhD thesis, 2025 · DOI: 10.17638/03194985</p>
             </div>
@@ -317,7 +291,7 @@
             <div class="pub-year">2026</div>
             <div class="pub-main">
               <div class="pub-tags"><span>Neural Networks</span></div>
-              <h3>Classwise-CRF: Category-specific fusion for enhanced semantic segmentation of remote sensing imagery</h3>
+              <h3><a href="https://doi.org/10.1016/j.neunet.2025.108485" target="_blank" rel="noreferrer">Classwise-CRF: Category-specific fusion for enhanced semantic segmentation of remote sensing imagery</a></h3>
               <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
               <p class="pub-meta">Neural Networks <b>197</b>, 108485</p>
             </div>
@@ -328,7 +302,7 @@
             <div class="pub-year">2026</div>
             <div class="pub-main">
               <div class="pub-tags"><span>arXiv</span><span>Preprint</span></div>
-              <h3>SO3UFormer: Learning intrinsic spherical features for rotation-robust panoramic segmentation</h3>
+              <h3><a href="https://arxiv.org/abs/2602.22867" target="_blank" rel="noreferrer">SO3UFormer: Learning intrinsic spherical features for rotation-robust panoramic segmentation</a></h3>
               <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
               <p class="pub-meta">arXiv:2602.22867</p>
             </div>
@@ -405,7 +379,6 @@
       </section>
 
       <section class="contact" id="contact" aria-labelledby="contact-title">
-        <div class="contact-orbit" aria-hidden="true"><i></i><i></i><i></i></div>
         <div class="section-index reveal">05 / CONTACT</div>
         <p class="contact-eyebrow reveal">Ideas, collaborations, or future opportunities</p>
         <h2 id="contact-title" class="reveal">Let’s explore<br />what’s <span>next.</span></h2>
@@ -428,6 +401,6 @@
       <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script.js?v=3"></script>
+    <script src="script.js?v=20260908.4" defer></script>
   </body>
 </html>

@@ -22,4 +22,11 @@ This repository is intentionally plain HTML/CSS/JavaScript, so GitHub Pages can 
 
 ## Design provenance
 
-The visual direction adapts the free **3D Portfolio** prompt from [MotionSites](https://motionsites.ai/?prompt=3d-jack-portfolio-hero) into an academic physics portfolio. No proprietary template source code or third-party imagery is used.
+The original visual direction adapted the free **3D Portfolio** prompt from [MotionSites](https://motionsites.ai/?prompt=3d-jack-portfolio-hero). The September 2026 revision develops that foundation into a restrained scientific portfolio: an in-flow two-column introduction, original canvas physics illustrations, and light-background reading sections. No proprietary template source code or third-party imagery is used.
+
+## Animation and accessibility
+
+- The Néel-skyrmion field is an analytic illustration with a downward core, radial domain wall, and upward background. Its breathing motion is schematic, not a time-resolved simulation.
+- Research illustrations show a spin texture, wave propagation, and a Bloch-sphere state vector.
+- Canvas animation is limited to 30 frames per second, stops off-screen or in hidden tabs, and respects `prefers-reduced-motion`. The homepage also offers a manual pause control.
+- Main content and links remain readable with JavaScript disabled. Publication titles link directly to their existing DOI or repository records.
