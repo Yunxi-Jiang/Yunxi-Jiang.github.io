@@ -24,7 +24,7 @@
       href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="styles.css?v=20260908.4" />
+    <link rel="stylesheet" href="styles.css?v=20261005.1" />
   </head>
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -192,122 +192,166 @@
           <div>
             <div class="section-index">03 / PUBLICATIONS</div>
             <h2 id="publications-title">Research output</h2>
+            <p class="publications-intro">Published work and ongoing research in physics and scientific computing.</p>
           </div>
-          <a
-            class="button button-ghost"
-            href="https://scholar.google.com/citations?user=_2a9RTAAAAAJ&hl=en"
-            target="_blank"
-            rel="noreferrer"
-            >Scholar profile ↗</a
-          >
+          <a class="button button-ghost" href="https://scholar.google.com/citations?user=_2a9RTAAAAAJ&hl=en" target="_blank" rel="noreferrer">Scholar profile ↗</a>
         </div>
 
-        <div class="publication-list">
-          <article class="publication featured-publication reveal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>Physical Review B</span><span>Featured research</span></div>
-              <h3><a href="https://doi.org/10.1103/PhysRevB.112.014423" target="_blank" rel="noreferrer">Altermagnet skyrmions: Macroscopic realization of <em>d</em>-wave symmetry</a></h3>
-              <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Zhikai Wang, and Hao Yu</p>
-              <p class="pub-meta">Physical Review B <b>112</b>, 014423</p>
-            </div>
-            <a
-              class="pub-link"
-              href="https://doi.org/10.1103/PhysRevB.112.014423"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Open Altermagnet skyrmions paper"
-              >↗</a
-            >
-          </article>
+        <div class="publication-tools">
+          <div class="publication-filters" role="group" aria-label="Filter research output" data-publication-filters hidden>
+            <button type="button" data-publication-filter="all" aria-pressed="true" aria-controls="publication-list">All work <span data-publication-count="all">12</span></button>
+            <button type="button" data-publication-filter="published" aria-pressed="false" aria-controls="publication-list">Published <span data-publication-count="published">6</span></button>
+            <button type="button" data-publication-filter="review" aria-pressed="false" aria-controls="publication-list">Under review <span data-publication-count="review">5</span></button>
+            <button type="button" data-publication-filter="thesis" aria-pressed="false" aria-controls="publication-list">Thesis <span data-publication-count="thesis">1</span></button>
+          </div>
+          <p class="publication-updated">Updated <time datetime="2026-10-05">Oct 2026</time></p>
+        </div>
+        <p class="sr-only" data-publication-status role="status" aria-live="polite" aria-atomic="true">Showing all 12 research entries.</p>
 
-          <article class="publication reveal">
-            <div class="pub-year">2025</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>JMMM</span></div>
-              <h3><a href="https://doi.org/10.1016/j.jmmm.2025.172800" target="_blank" rel="noreferrer">Dynamics of current-driven spin waves in a confined track</a></h3>
-              <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Hem Raj Sharma, and Hao Yu</p>
-              <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>615</b>, 172800</p>
+        <div class="publication-list" id="publication-list">
+          <section class="publication-group" data-publication-group="published" aria-labelledby="published-works-title">
+            <div class="publication-group-heading">
+              <h3 id="published-works-title">Published articles</h3>
+              <span>6 articles</span>
             </div>
-            <a class="pub-link" href="https://doi.org/10.1016/j.jmmm.2025.172800" target="_blank" rel="noreferrer" aria-label="Open spin waves paper">↗</a>
-          </article>
+            <article class="publication featured-publication reveal">
+              <div class="pub-year">2025</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>Physical Review B</span><span>Featured research</span></div>
+                <h4><a href="https://doi.org/10.1103/PhysRevB.112.014423" target="_blank" rel="noreferrer">Altermagnet skyrmions: Macroscopic realization of <em>d</em>-wave symmetry</a></h4>
+                <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Zhikai Wang, and Hao Yu</p>
+                <p class="pub-meta">Physical Review B <b>112</b>(1), 014423</p>
+              </div>
+              <a class="pub-link" href="https://doi.org/10.1103/PhysRevB.112.014423" target="_blank" rel="noreferrer" aria-label="Open Altermagnet skyrmions paper">↗</a>
+            </article>
 
-          <article class="publication reveal">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>Journal of Applied Physics</span></div>
-              <h3><a href="https://doi.org/10.1063/5.0151304" target="_blank" rel="noreferrer">Skyrmion-based racetrack multilevel data storage device manipulated by pinning</a></h3>
-              <p><strong>Yunxi Jiang</strong>, Hao Yu, and Xi Chen</p>
-              <p class="pub-meta">Journal of Applied Physics <b>134</b>, 053901</p>
-            </div>
-            <a class="pub-link" href="https://doi.org/10.1063/5.0151304" target="_blank" rel="noreferrer" aria-label="Open racetrack storage paper">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2025</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>JMMM</span></div>
+                <h4><a href="https://doi.org/10.1016/j.jmmm.2025.172800" target="_blank" rel="noreferrer">Dynamics of current-driven spin waves in a confined track</a></h4>
+                <p><strong>Yunxi Jiang</strong>, Xi Chen, Chen Xuan, Hem Raj Sharma, and Hao Yu</p>
+                <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>615</b>, 172800</p>
+              </div>
+              <a class="pub-link" href="https://doi.org/10.1016/j.jmmm.2025.172800" target="_blank" rel="noreferrer" aria-label="Open spin waves paper">↗</a>
+            </article>
 
-          <article class="publication reveal">
-            <div class="pub-year">2022</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>JMMM</span></div>
-              <h3><a href="https://doi.org/10.1016/j.jmmm.2022.169786" target="_blank" rel="noreferrer">Current-driven dynamics of skyrmions in the presence of pinning at finite temperatures</a></h3>
-              <p><strong>Yunxi Jiang</strong>, Chen Xuan, and Hao Yu</p>
-              <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>562</b>, 169786</p>
-            </div>
-            <a class="pub-link" href="https://doi.org/10.1016/j.jmmm.2022.169786" target="_blank" rel="noreferrer" aria-label="Open finite-temperature skyrmion paper">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2023</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>Journal of Applied Physics</span></div>
+                <h4><a href="https://doi.org/10.1063/5.0151304" target="_blank" rel="noreferrer">Skyrmion-based racetrack multilevel data storage device manipulated by pinning</a></h4>
+                <p><strong>Yunxi Jiang</strong>, Hao Yu, and Xi Chen</p>
+                <p class="pub-meta">Journal of Applied Physics <b>134</b>, 053901</p>
+              </div>
+              <a class="pub-link" href="https://doi.org/10.1063/5.0151304" target="_blank" rel="noreferrer" aria-label="Open racetrack storage paper">↗</a>
+            </article>
 
-          <article class="publication reveal">
-            <div class="pub-year">2023</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>Science and Engineering</span><span>Review</span></div>
-              <h3><a href="https://scholar.google.com/scholar?q=%22Research+Progress+on+Dynamics+of+Skyrmions+Under+the+Effect+of+Pinning%22" target="_blank" rel="noreferrer">Research progress on dynamics of skyrmions under the effect of pinning</a></h3>
-              <p><strong>Yunxi Jiang</strong> and Hao Yu</p>
-              <p class="pub-meta">Science and Engineering <b>1</b>(1), 38–46</p>
-            </div>
-            <a class="pub-link" href="https://scholar.google.com/scholar?q=%22Research+Progress+on+Dynamics+of+Skyrmions+Under+the+Effect+of+Pinning%22" target="_blank" rel="noreferrer" aria-label="Search for skyrmion pinning review">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2022</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>JMMM</span></div>
+                <h4><a href="https://doi.org/10.1016/j.jmmm.2022.169786" target="_blank" rel="noreferrer">Current-driven dynamics of skyrmions in the presence of pinning at finite temperatures</a></h4>
+                <p><strong>Yunxi Jiang</strong>, Chen Xuan, and Hao Yu</p>
+                <p class="pub-meta">Journal of Magnetism and Magnetic Materials <b>562</b>, 169786</p>
+              </div>
+              <a class="pub-link" href="https://doi.org/10.1016/j.jmmm.2022.169786" target="_blank" rel="noreferrer" aria-label="Open finite-temperature skyrmion paper">↗</a>
+            </article>
 
-          <article class="publication reveal">
-            <div class="pub-year">—</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>Under review</span></div>
-              <h3><a href="https://scholar.google.com/scholar?q=%22Intrinsic+Double-Well+Potential+of+Altermagnetic+Skyrmions%22" target="_blank" rel="noreferrer">Intrinsic double-well potential of altermagnetic skyrmions: Toward a qubit</a></h3>
-              <p><strong>Yunxi Jiang</strong>, Chen Xuan, Xi Chen, Zhikai Wang, Qinfeng Zhu, and Hao Yu</p>
-              <p class="pub-meta">Manuscript under review</p>
-            </div>
-            <a class="pub-link" href="https://scholar.google.com/scholar?q=%22Intrinsic+Double-Well+Potential+of+Altermagnetic+Skyrmions%22" target="_blank" rel="noreferrer" aria-label="Search for altermagnetic skyrmion manuscript">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2022</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>Science and Engineering</span><span>Review article</span></div>
+                <h4><a href="https://scholar.google.com/scholar?q=%22Research+Progress+on+Dynamics+of+Skyrmions+Under+the+Effect+of+Pinning%22" target="_blank" rel="noreferrer">Research progress on dynamics of skyrmions under the effect of pinning</a></h4>
+                <p><strong>Yunxi Jiang</strong> and Hao Yu</p>
+                <p class="pub-meta">Science and Engineering <b>1</b>(1), 38–46</p>
+              </div>
+              <a class="pub-link" href="https://scholar.google.com/scholar?q=%22Research+Progress+on+Dynamics+of+Skyrmions+Under+the+Effect+of+Pinning%22" target="_blank" rel="noreferrer" aria-label="Search for skyrmion pinning review">↗</a>
+            </article>
 
-          <article class="publication thesis-publication reveal">
-            <div class="pub-year">PhD</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>University of Liverpool</span><span>Thesis</span></div>
-              <h3><a href="https://livrepository.liverpool.ac.uk/3194985/" target="_blank" rel="noreferrer">Current-driven magnetic skyrmions for encoding/storing information: Manipulation and dynamics in nanoscale structures</a></h3>
-              <p><strong>Yunxi Jiang</strong></p>
-              <p class="pub-meta">PhD thesis, 2025 · DOI: 10.17638/03194985</p>
-            </div>
-            <a class="pub-link" href="https://livrepository.liverpool.ac.uk/3194985/" target="_blank" rel="noreferrer" aria-label="Open PhD thesis record">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2026</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>Neural Networks</span></div>
+                <h4><a href="https://doi.org/10.1016/j.neunet.2025.108485" target="_blank" rel="noreferrer">ClassWise-CRF: Category-specific fusion for enhanced semantic segmentation of remote sensing imagery</a></h4>
+                <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
+                <p class="pub-meta">Neural Networks <b>197</b>, 108485</p>
+              </div>
+              <a class="pub-link" href="https://doi.org/10.1016/j.neunet.2025.108485" target="_blank" rel="noreferrer" aria-label="Open ClassWise-CRF paper">↗</a>
+            </article>
+          </section>
 
-          <article class="publication reveal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>Neural Networks</span></div>
-              <h3><a href="https://doi.org/10.1016/j.neunet.2025.108485" target="_blank" rel="noreferrer">Classwise-CRF: Category-specific fusion for enhanced semantic segmentation of remote sensing imagery</a></h3>
-              <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
-              <p class="pub-meta">Neural Networks <b>197</b>, 108485</p>
+          <section class="publication-group" data-publication-group="review" aria-labelledby="review-works-title">
+            <div class="publication-group-heading">
+              <h3 id="review-works-title">Manuscripts under review</h3>
+              <span>5 manuscripts</span>
             </div>
-            <a class="pub-link" href="https://doi.org/10.1016/j.neunet.2025.108485" target="_blank" rel="noreferrer" aria-label="Open Classwise-CRF paper">↗</a>
-          </article>
+            <article class="publication reveal">
+              <div class="pub-year">2026</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span class="review-tag">Under review</span><span>arXiv preprint</span></div>
+                <h4><a href="https://arxiv.org/abs/2609.29190" target="_blank" rel="noreferrer">Antisymmetric breathing in altermagnetic skyrmions</a></h4>
+                <p><strong>Yunxi Jiang</strong>, Chen Xuan, Xi Chen, Zhikai Wang, Qinfeng Zhu, and Hao Yu</p>
+                <p class="pub-meta">arXiv:2609.29190</p>
+              </div>
+              <a class="pub-link" href="https://arxiv.org/abs/2609.29190" target="_blank" rel="noreferrer" aria-label="Open Antisymmetric breathing preprint">↗</a>
+            </article>
 
-          <article class="publication reveal">
-            <div class="pub-year">2026</div>
-            <div class="pub-main">
-              <div class="pub-tags"><span>arXiv</span><span>Preprint</span></div>
-              <h3><a href="https://arxiv.org/abs/2602.22867" target="_blank" rel="noreferrer">SO3UFormer: Learning intrinsic spherical features for rotation-robust panoramic segmentation</a></h3>
-              <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
-              <p class="pub-meta">arXiv:2602.22867</p>
+            <article class="publication reveal">
+              <div class="pub-year">—</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span class="review-tag">Under review</span></div>
+                <h4>Temperature-gradient-driven domain walls: Statistical fluctuations near the Curie temperature</h4>
+                <p><strong>Yunxi Jiang</strong> and Giovanni Manfredi</p>
+              </div>
+            </article>
+
+            <article class="publication reveal">
+              <div class="pub-year">—</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span class="review-tag">Under review</span></div>
+                <h4>Field-induced three-dimensional zig-zag Néel skyrmion chain in multilayer systems</h4>
+                <p>Z. Wang, C. Xuan, X. Chen, <strong>Y. Jiang</strong>, and H. Yu</p>
+              </div>
+            </article>
+
+            <article class="publication reveal">
+              <div class="pub-year">2026</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span class="review-tag">Under review</span><span>arXiv preprint</span></div>
+                <h4><a href="https://arxiv.org/abs/2602.22867v1" target="_blank" rel="noreferrer">SO3UFormer: Learning intrinsic spherical features for rotation-robust panoramic segmentation</a></h4>
+                <p>Qinfeng Zhu, <strong>Yunxi Jiang</strong>, and Lei Fan</p>
+                <p class="pub-meta">arXiv:2602.22867v1</p>
+              </div>
+              <a class="pub-link" href="https://arxiv.org/abs/2602.22867v1" target="_blank" rel="noreferrer" aria-label="Open SO3UFormer preprint">↗</a>
+            </article>
+
+            <article class="publication reveal">
+              <div class="pub-year">—</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span class="review-tag">Under review</span></div>
+                <h4>PanoPed: Panoramic pedestrian tracking on the full sphere</h4>
+                <p>Q. Zhu, W. Zhao, <strong>Y. Jiang</strong>, A. Nguyen, and L. Fan</p>
+              </div>
+            </article>
+          </section>
+
+          <section class="publication-group" data-publication-group="thesis" aria-labelledby="thesis-works-title">
+            <div class="publication-group-heading">
+              <h3 id="thesis-works-title">Doctoral thesis</h3>
+              <span>1 thesis</span>
             </div>
-            <a class="pub-link" href="https://arxiv.org/abs/2602.22867" target="_blank" rel="noreferrer" aria-label="Open SO3UFormer preprint">↗</a>
-          </article>
+            <article class="publication thesis-publication reveal">
+              <div class="pub-year">2025</div>
+              <div class="pub-main">
+                <div class="pub-tags"><span>University of Liverpool</span><span>PhD thesis</span></div>
+                <h4><a href="https://livrepository.liverpool.ac.uk/3194985/" target="_blank" rel="noreferrer">Current-driven magnetic skyrmions for encoding/storing information: Manipulation and dynamics in nanoscale structures</a></h4>
+                <p><strong>Yunxi Jiang</strong></p>
+                <p class="pub-meta">PhD thesis · DOI: 10.17638/03194985</p>
+              </div>
+              <a class="pub-link" href="https://livrepository.liverpool.ac.uk/3194985/" target="_blank" rel="noreferrer" aria-label="Open PhD thesis record">↗</a>
+            </article>
+          </section>
         </div>
       </section>
 
@@ -396,11 +440,11 @@
     </main>
 
     <footer>
-      <p>© <span data-year></span> Yunxi Jiang · 蒋韫希</p>
+      <p>© <span data-year>2026</span> Yunxi Jiang · 蒋韫希</p>
       <p>Condensed matter physics · Strasbourg, France</p>
       <a href="#top">Back to top ↑</a>
     </footer>
 
-    <script src="script.js?v=20260908.4" defer></script>
+    <script src="script.js?v=20261005.1" defer></script>
   </body>
 </html>

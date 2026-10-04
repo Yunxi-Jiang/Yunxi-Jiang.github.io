@@ -10,21 +10,50 @@
   let scrollPending = false;
   function updateNavigation() {
     header?.classList.toggle("scrolled", window.scrollY > 24);
+    const scrollRange = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+    header?.style.setProperty("--reading-progress", String(Math.min(1, Math.max(0, window.scrollY / scrollRange))));
     let current = null;
     for (const link of navLinks) {
       const section = document.querySelector(link.getAttribute("href"));
       if (section && section.getBoundingClientRect().top <= window.innerHeight * .4) current = link;
     }
+    const contact = document.querySelector("#contact");
+    if (contact && contact.getBoundingClientRect().top <= window.innerHeight * .4) current = null;
     for (const link of navLinks) {
       if (link === current) link.setAttribute("aria-current", "location");
       else link.removeAttribute("aria-current");
     }
     scrollPending = false;
   }
-  window.addEventListener("scroll", () => {
+  function queueNavigation() {
     if (!scrollPending) { scrollPending = true; requestAnimationFrame(updateNavigation); }
-  }, { passive: true });
+  }
+  window.addEventListener("scroll", queueNavigation, { passive: true });
+  window.addEventListener("resize", queueNavigation);
   updateNavigation();
+
+  const publicationFilters = document.querySelector("[data-publication-filters]");
+  if (publicationFilters) {
+    const groups = Array.from(document.querySelectorAll("[data-publication-group]"));
+    const buttons = Array.from(publicationFilters.querySelectorAll("[data-publication-filter]"));
+    const counts = Object.fromEntries(groups.map(group => [group.dataset.publicationGroup, group.querySelectorAll(".publication").length]));
+    counts.all = Object.values(counts).reduce((sum, count) => sum + count, 0);
+    document.querySelectorAll("[data-publication-count]").forEach(element => {
+      element.textContent = counts[element.dataset.publicationCount];
+    });
+    publicationFilters.addEventListener("click", event => {
+      const button = event.target.closest("[data-publication-filter]");
+      if (!button || !publicationFilters.contains(button)) return;
+      const filter = button.dataset.publicationFilter;
+      groups.forEach(group => { group.hidden = filter !== "all" && group.dataset.publicationGroup !== filter; });
+      buttons.forEach(item => item.setAttribute("aria-pressed", String(item === button)));
+      const status = document.querySelector("[data-publication-status]");
+      const labels = { published: "published articles", review: "manuscripts under review", thesis: "doctoral thesis" };
+      if (status) status.textContent = filter === "all" ? `Showing all ${counts.all} research entries.` : `Showing ${counts[filter]} ${labels[filter]}.`;
+      queueNavigation();
+    });
+    publicationFilters.hidden = false;
+  }
 
   if ("IntersectionObserver" in window) {
     const reveals = new IntersectionObserver(entries => {
